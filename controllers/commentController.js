@@ -4,7 +4,7 @@ const Post = require('../models/postModel');
 exports.createComment = async (req,res) => {
     try {
         //fetching the post id, user name and body of comment
-        const {post, user, body} = req.body();
+        const {post, user, body} = req.body;
         //creating a new object of comment
         const newComment = new Comment({
             post, user, body
