@@ -28,7 +28,7 @@ exports.unlikePost = async(req,res) => {
     try {
         const {post, like} = req.body;
         //deleting from like schema
-        const deletedLike = await Like.findByIdAndDelete(like);
+        const deletedLike = await Like.findOneAndDelete({post: post, _id: like});
         //updating the post schema
         const updatedPost = await Post.findByIdAndUpdate(post, {$pull : {likes: deletedLike._id}}, {new: true})
             populate("likes").exec();
